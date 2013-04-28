@@ -1,0 +1,18 @@
+@charset "utf-8";
+/*! 공통 클래스 스타일 */
+
+/* 이미지 대체 기법 */
+.ui-ir {overflow: hidden; text-indent: -9999em}
+/* 스크린리더/브라우저에서 모두 감추기 */
+.ui-hidden {display: none !important}
+/* 스크린리더에서는 읽기 가능 */
+.ui-acc-hidden {position: absolute; clip: rect(1px); clip: rect(1px, 1px, 1px, 1px)}
+/* 스크린리더에서는 읽기 가능 + 포커스 적용 */
+.ui-acc-hidden.focusable:focus {position: static; clip: auto}
+/* 화면에서는 안 보이지만, 레이아웃 공간 적용 */
+.ui-invisible {visibility: hidden}
+/* float 적용 요소 감싸는 클래스 - clearfix */
+.ui-cf:before,
+.ui-cf:after {content: " "; display: table}
+.ui-cf:after {clear: both}
+.lt-ie8 .ui-cf {zoom: 1}
