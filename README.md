@@ -1,7 +1,10 @@
 webProjectTemplate
 ==================
 
-웹 프로젝트 템플릿 v0.0.2 
+웹 프로젝트 템플릿 v0.0.2
+- 강의 진행을 위한 프로젝트 팀플렛입니다.
+- Modernizr.js + jQuery.js + Require.js + Underscore.js + Backbone.js + Bootstrap Framework
+
 
   index.html
   robot.txt
