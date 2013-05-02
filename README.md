@@ -6,7 +6,7 @@ webProjectTemplate
 - Modernizr.js + jQuery.js + Require.js + Underscore.js + Backbone.js + Bootstrap Framework
 
 
-- TREE STRUCTURE -
+~ TREE STRUCTURE ~
 
   index.html
   robot.txt
