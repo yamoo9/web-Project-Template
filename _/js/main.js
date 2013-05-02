@@ -13,6 +13,7 @@ require.config({
 		'prefix-free' : {
 			exports : 'PrefixFree'
 		},
+		'Twitter Bootstrap' : ['jquery'],
 		'jquery.plugin': ['jquery']
 	},
 	paths: {
@@ -21,12 +22,14 @@ require.config({
 		'jquery_v1' : 'libs/jquery/jquery-1.9.1',
 		'jquery' : 'libs/jquery/jquery-2.0.0b2',
 		'prefix-free' : 'libs/prefix-free.min',
-		'jquery.plugin' : 'plugin/jquery.plugin'
+		'jquery.plugin' : 'plugin/jquery.plugin',
+		'Twitter Bootstrap' : '../bootstrap/js/bootstrap.min'
 	}
 });
 
 // 모듈 로더 호출
-require(['jquery.plugin']);
+require(['Twitter Bootstrap']);
+// require(['jquery.plugin']);
 
 // require(['prefix-free']);
 // require(['prefix-free'], function(pf) {
