@@ -12,10 +12,10 @@ webProjectTemplate
   │   |   ├── chrome-frame.css
   │   |   ├── helper-classes.css
   │   |   ├── opt-default.css
-  │   |   ├── print.css
+  │   |   └── print.css
   │   ├── common.css
   │   ├── common.min.css
-  │   ├── main.css
+  │   └── main.css
   ├── js/
   │   ├── libs/
   │   |   ├── jquery/
@@ -24,28 +24,28 @@ webProjectTemplate
   |   │   |   ├── jquery-2.0.0b2.js
   |   │   |   ├── jquery-2.0.0b2.min.js
   |   │   |   ├── jquery-migrate-1.1.1.js
-  |   │   |   ├── jquery-migrate-1.1.1.min.js
+  |   │   |   └── jquery-migrate-1.1.1.min.js
   │   |   ├── yamoo9/
   |   │   |   ├── yamoo9-dayNight.css
   |   │   |   ├── yamoo9-isDoctype.css
-  |   │   |   ├── yamoo9-UA.css
+  |   │   |   └── yamoo9-UA.css
   │   |   ├── backbone.min.js
   │   |   ├── modernizr.custom.js
   │   |   ├── prefix-free.min.js
   │   |   ├── require.min.js
-  │   |   ├── underscore.min.js
+  │   |   └── underscore.min.js
   │   ├── plugin/
-  |   │   ├── sample/
+  |   │   └── sample/
   |   |       ├── jquery.plugin.css
-  |   |       ├── jquery.plugin.js
-  │   ├── main.js
-  ├── bootstrap/
+  |   |       └── jquery.plugin.js
+  │   └── main.js
+  └── bootstrap/
       ├── css/
       │   ├── bootstrap.css
-      │   ├── bootstrap.min.css
+      │   └── bootstrap.min.css
       ├── js/
       │   ├── bootstrap.js
-      │   ├── bootstrap.min.js
+      │   └── bootstrap.min.js
       └── img/
           ├── glyphicons-halflings.png
           └── glyphicons-halflings-white.png
