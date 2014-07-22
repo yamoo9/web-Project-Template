@@ -1,0 +1,21 @@
+/* http://humanstxt.org */
+
+/* TEAM */
+Your title  : 이름 (Your name).
+Site        : E-mail, 연락처 서식 링크 등 (email, link to a contact form, etc.)
+Facebook    : 페이스북 아이디(your Facebook username)
+Twitter     : 트위터 아이디(your Twitter username)
+Location    : 거주지 (City, Country)
+[...]
+
+
+/* THANKS */
+Name        : 이름 또는 주소 (name or url)
+[...]
+
+
+/* SITE */
+Last update : 최종 업데이트 일자 (YYYY/MM/DD)
+Standards   : 웹 사이트 제작에 사용된 기술 (HTML5, CSS3, ...)
+Components  : 사용한 컴포넌트 (Modernizr, jQuery, etc)
+Software    : 사용한 도구 (Software used for the development)

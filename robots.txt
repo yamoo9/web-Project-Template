@@ -1,3 +1,7 @@
-# robotstxt.org/
+/*
+http://www.robotstxt.org
+참고(한글): http://googlekoreablog.blogspot.kr/2008/04/robotstxt.html
+*/
 
 User-agent: *
+Disallow: /admin/

@@ -1,0 +1,272 @@
+# ------------------------------------------------------------------------------
+# Apache 설정 파일 : HTML5 Boilerplate 참고 - http://goo.gl/9SW0h
+# ------------------------------------------------------------------------------
+
+
+# MIME(Multipurpose Internet Mail Extensions) 타입 설정
+# ------------------------------------------------------------------------------
+<IfModule mod_mime.c>
+
+  # 자바스크립트 파일 : JavaScript
+    # http://tools.ietf.org/html/rfc4329#section-7.2
+    AddType application/javascript                      js jsonp
+    AddType application/json                            json
+
+  # 오디오 파일 : Audio
+    AddType audio/mp4                                   m4a f4a f4b
+    AddType audio/ogg                                   oga ogg
+
+  # 비디오 파일 : Video
+    AddType video/mp4                                   mp4 m4v f4v f4p
+    AddType video/ogg                                   ogv
+    AddType video/webm                                  webm
+    AddType video/x-flv                                 flv
+
+  # 웹 폰트 파일 : Web fonts
+    AddType application/font-woff                       woff
+    AddType application/vnd.ms-fontobject               eot
+    AddType application/x-font-ttf                      ttc ttf
+    AddType font/opentype                               otf
+    # SVGZ 폰트는 아이패드(iPad)에서 활용 됨.
+    # https://twitter.com/FontSquirrel/status/14855840545
+    AddType     image/svg+xml                           svg svgz
+    AddEncoding gzip                                    svgz
+
+  # 기타 : Other
+    AddType application/octet-stream                    safariextz
+    AddType application/x-chrome-extension              crx
+    AddType application/x-opera-extension               oex
+    AddType application/x-shockwave-flash               swf
+    AddType application/x-web-app-manifest+json         webapp
+    AddType application/x-xpinstall                     xpi
+    AddType application/xml                             atom rdf rss xml
+    AddType image/webp                                  webp
+    AddType image/x-icon                                ico
+    AddType text/cache-manifest                         appcache manifest
+    AddType text/vtt                                    vtt
+    AddType text/x-component                            htc
+    AddType text/x-vcard                                vcf
+
+</IfModule>
+
+
+# UTF-8 인코딩 설정(encoding)
+# ------------------------------------------------------------------------------
+# 기본 인코딩 언어셋을 UTF-8로 설정
+AddDefaultCharset utf-8
+
+# 인코딩 설정이 UTF-8이라고 확신되면 파일 포멧을 설정
+<IfModule mod_mime.c>
+    AddCharset utf-8 .atom .css .js .json .rss .vtt .webapp .xml
+</IfModule>
+
+
+# 모든 도메인 상에서 웹 폰트 허용
+# ------------------------------------------------------------------------------
+<IfModule mod_headers.c>
+    <FilesMatch "\.(eot|font.css|otf|ttc|ttf|woff)$">
+        Header set Access-Control-Allow-Origin "*"
+    </FilesMatch>
+</IfModule>
+
+
+
+
+# IE 사용자 경험을 최적화 (사용자 브라우저의 최신 버전을 유지)
+# ------------------------------------------------------------------------------
+# IE 모드에 대한 이해 : http://hsivonen.iki.fi/doctype/ie-mode.pdf.
+# Google 크롬프레임(Chrome Frame) 활용 권유 : http://goo.gl/qrQMh
+# Google 크롬프레임 개발자 참고 문서 : http://goo.gl/eqkAz
+
+<IfModule mod_headers.c>
+    Header set X-UA-Compatible "IE=edge,chrome=1"
+    <FilesMatch "\.(appcache|crx|css|eot|gif|htc|ico|jpe?g|js|m4a|m4v|manifest|mp4|oex|oga|ogg|ogv|otf|pdf|png|safariextz|svg|svgz|ttf|vcf|webapp|webm|webp|woff|xml|xpi)$">
+        Header unset X-UA-Compatible
+    </FilesMatch>
+</IfModule>
+
+
+# IE 아이프레임(iframes) 상에서 쿠기 허용 설정(Cookie setting - Allow)
+# ------------------------------------------------------------------------------
+# <IfModule mod_headers.c>
+#   Header set P3P "policyref=\"/w3c/p3p.xml\", CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""
+# </IfModule>
+
+
+
+
+# [접근성] 404 오류 발생 시, 존재하지 않는 폴더로 돌리는 것 방지
+# ------------------------------------------------------------------------------
+# http://httpd.apache.org/docs/current/content-negotiation.html#multiviews
+# http://www.webmasterworld.com/apache/3808792.htm
+Options -MultiViews
+
+
+# [접근성] 사용자 정의 404 오류 페이지 제공
+# ------------------------------------------------------------------------------
+# http://httpd.apache.org/docs/current/mod/core.html#errordocument
+ErrorDocument 404 /404.html
+
+
+
+
+# [접근성, 검색엔진최적화] Rewrite engine
+# ------------------------------------------------------------------------------
+# http://httpd.apache.org/docs/current/misc/perf-tuning.html#symlinks
+# http://www.rackspace.com/knowledge_center/frequently-asked-question/why-is-mod-rewrite-not-working-on-my-site
+<IfModule mod_rewrite.c>
+    Options +FollowSymlinks
+  # Options +SymLinksIfOwnerMatch
+    RewriteEngine On
+  # RewriteBase /
+</IfModule>
+
+
+# [접근성, 검색엔진최적화] "www." 시작하는 URL 설정 
+# ------------------------------------------------------------------------------
+# http://no-www.org/faq.php?q=class_b
+# 중요! : 아래 옵션 규칙을 동시에 사용해서는 안됨.
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# 옵션 1: rewrite www.example.com → example.com
+<IfModule mod_rewrite.c>
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# 옵션 2: rewrite example.com → www.example.com
+# <IfModule mod_rewrite.c>
+#    RewriteCond %{HTTPS} !=on
+#    RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
+#    RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+# </IfModule>
+
+
+
+
+# [성능] 캐쉬(Cache) 설정 Expires headers
+# ------------------------------------------------------------------------------
+<IfModule mod_expires.c>
+
+    ExpiresActive on
+    ExpiresDefault                                      "access plus 1 month"
+
+  # CSS
+    ExpiresByType text/css                              "access plus 1 year"
+
+  # Data interchange
+    ExpiresByType application/json                      "access plus 0 seconds"
+    ExpiresByType application/xml                       "access plus 0 seconds"
+    ExpiresByType text/xml                              "access plus 0 seconds"
+
+  # 파비콘 : Favicon
+    ExpiresByType image/x-icon                          "access plus 1 week"
+
+  # HTML components (HTCs)
+    ExpiresByType text/x-component                      "access plus 1 month"
+
+  # HTML
+    ExpiresByType text/html                             "access plus 0 seconds"
+
+  # JavaScript
+    ExpiresByType application/javascript                "access plus 1 year"
+
+  # Manifest files
+    ExpiresByType application/x-web-app-manifest+json   "access plus 0 seconds"
+    ExpiresByType text/cache-manifest                   "access plus 0 seconds"
+
+  # Media
+    ExpiresByType audio/ogg                             "access plus 1 month"
+    ExpiresByType image/gif                             "access plus 1 month"
+    ExpiresByType image/jpeg                            "access plus 1 month"
+    ExpiresByType image/png                             "access plus 1 month"
+    ExpiresByType video/mp4                             "access plus 1 month"
+    ExpiresByType video/ogg                             "access plus 1 month"
+    ExpiresByType video/webm                            "access plus 1 month"
+
+  # Web feeds
+    ExpiresByType application/atom+xml                  "access plus 1 hour"
+    ExpiresByType application/rss+xml                   "access plus 1 hour"
+
+  # Web fonts
+    ExpiresByType application/font-woff                 "access plus 1 month"
+    ExpiresByType application/vnd.ms-fontobject         "access plus 1 month"
+    ExpiresByType application/x-font-ttf                "access plus 1 month"
+    ExpiresByType font/opentype                         "access plus 1 month"
+    ExpiresByType image/svg+xml                         "access plus 1 month"
+
+</IfModule>
+
+
+# [성능] CSS, JS 파일 합치기
+# ------------------------------------------------------------------------------
+# http://www.isitvivid.com/blog/combining-your-cssjs-files-with-htaccess/
+<FilesMatch "\.combined\.(js|css)$">
+    Options +Includes
+    SetOutputFilter INCLUDES
+</FilesMatch>
+
+
+# [성능] Gzip 압축
+# ------------------------------------------------------------------------------
+# http://developer.yahoo.com/blogs/ydn/posts/2010/12/pushing-beyond-gzipping
+<IfModule mod_deflate.c>
+
+    <IfModule mod_setenvif.c>
+        <IfModule mod_headers.c>
+            SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+            RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+        </IfModule>
+    </IfModule>
+    
+    <IfModule mod_filter.c>
+        AddOutputFilterByType DEFLATE application/atom+xml \
+                                      application/javascript \
+                                      application/json \
+                                      application/rss+xml \
+                                      application/vnd.ms-fontobject \
+                                      application/x-font-ttf \
+                                      application/x-web-app-manifest+json \
+                                      application/xhtml+xml \
+                                      application/xml \
+                                      font/opentype \
+                                      image/svg+xml \
+                                      image/x-icon \
+                                      text/css \
+                                      text/html \
+                                      text/plain \
+                                      text/x-component \
+                                      text/xml
+    </IfModule>
+
+</IfModule>
+
+
+
+
+# 크로스 도메인 Cross-domain AJAX requests
+# ------------------------------------------------------------------------------
+# http://code.google.com/p/html5security/wiki/CrossOriginRequestSecurity
+# http://enable-cors.org/
+
+# <IfModule mod_headers.c>
+#    Header set Access-Control-Allow-Origin "*"
+# </IfModule>
+
+
+# CORS(CROSS-ORIGIN RESOURCE SHARING) 상에서 이미지 처리
+# ------------------------------------------------------------------------------
+# https://developer.mozilla.org/en/CORS_Enabled_Image
+# http://blog.chromium.org/2011/07/using-cross-domain-images-in-webgl-and.html
+# http://hacks.mozilla.org/2011/11/using-cors-to-load-webgl-textures-from-cross-domain-images/
+
+<IfModule mod_setenvif.c>
+    <IfModule mod_headers.c>
+        <FilesMatch "\.(gif|ico|jpe?g|png|svg|svgz|webp)$">
+            SetEnvIf Origin ":" IS_CORS
+            Header set Access-Control-Allow-Origin "*" env=IS_CORS
+        </FilesMatch>
+    </IfModule>
+</IfModule>
