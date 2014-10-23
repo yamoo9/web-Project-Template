@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<!--[if IE 6]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 ie6" lang="ko-KR"> <![endif]-->
-<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 ie7" lang="ko-KR"> <![endif]-->
-<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9 ie8" lang="ko-KR"> <![endif]-->
-<!--[if IE 9]> <html class="no-js lt-ie10 ie9" lang="ko-KR"> <![endif]-->
-<!--[if !IE]><!--> <html class="no-js" lang="ko-KR"> <!--<![endif]-->
+<!--[if IE 6]> <html lang="ko-KR" class="no-js lt-ie10 lt-ie9 lt-ie8 ie6"> <![endif]-->
+<!--[if IE 7]> <html lang="ko-KR" class="no-js lt-ie10 lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]> <html lang="ko-KR" class="no-js lt-ie10 lt-ie9 ie8">        <![endif]-->
+<!--[if IE 9]> <html lang="ko-KR" class="no-js lt-ie10 ie9">               <![endif]-->
+<!--[if !IE]><!-->
+<html lang="ko-KR" class="no-js">
+<!--<![endif]-->
 <head>
 
 <!-- 언어 인코딩 설정 -->
@@ -30,7 +32,11 @@
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
 <!-- 홈버튼(터치 아이콘) -->
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!-- '-precomposed.png'처럼 접미사 '-precomposed'를 붙이면 글로시 효과를 제거할 수 있습니다. (iOS < 7) -->
+<link rel="apple-touch-icon" href="somedir/apple-touch-icon-iphone-60x60.png">
+<link rel="apple-touch-icon" href="somedir/apple-touch-icon-ipad-76x76.png"            sizes="76x76">
+<link rel="apple-touch-icon" href="somedir/apple-touch-icon-iphone-retina-120x120.png" sizes="120x120">
+<link rel="apple-touch-icon" href="somedir/apple-touch-icon-ipad-retina-152x152.png"   sizes="152x152">
 
 <!-- 모더나이저 호출 = http://mordenizr.com/ -->
 <script src="./_/js/vender/modernizr.custom.js"></script>
